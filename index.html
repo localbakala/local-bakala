@@ -14,16 +14,29 @@
     header {
       padding: 40px 20px;
       text-align: center;
-      background-color: #e6ded3;
+      background-color: #cbb894;
+    }
+    header img {
+      max-width: 120px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+    }
+    @media screen and (max-width: 480px) {
+      header img {
+        max-width: 80px;
+      }
     }
     header h1 {
       margin: 0;
       font-size: 3rem;
       letter-spacing: 2px;
+      color: #3a2b1f;
     }
     header p {
       margin-top: 10px;
       font-size: 1.1rem;
+      color: #4b3a2b;
     }
     section {
       padding: 60px 20px;
@@ -34,6 +47,7 @@
       text-align: center;
       margin-bottom: 40px;
       font-size: 2rem;
+      color: #3a2b1f;
     }
     .menu {
       display: grid;
@@ -41,27 +55,39 @@
       gap: 20px;
     }
     .card {
-      background: white;
+      background: #fff3e0;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .card h3 {
       margin-bottom: 10px;
+      color: #3a2b1f;
+    }
+    .card strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 1.1rem;
+      color: #6b4f3a;
     }
     .btn {
       display: inline-block;
       margin-top: 20px;
       padding: 12px 25px;
-      background-color: #2b2b2b;
+      background-color: #3a2b1f;
       color: white;
       text-decoration: none;
       border-radius: 25px;
       font-size: 0.95rem;
     }
     .btn:hover {
-      background-color: #000;
+      background-color: #2a1d12;
     }
     form {
       display: grid;
@@ -78,7 +104,8 @@
     footer {
       text-align: center;
       padding: 30px;
-      background-color: #e6ded3;
+      background-color: #cbb894;
+      color: #3a2b1f;
       margin-top: 40px;
     }
   </style>
@@ -86,50 +113,63 @@
 <body>
 
   <header>
+    <img src="A_website_for_\"Local_Bakala,_a_coffee_shop,_is_di.png" alt="Local Bakala Logo">
     <h1>Local Bakala</h1>
     <p>Freshly brewed coffee • Local vibes • Everyday comfort</p>
-    <a class="btn" href="https://wa.me/96555432216">Order via WhatsApp</a>
+    <a class="btn" href="#order">Order via WhatsApp</a>
   </header>
 
   <section>
-    <h2 class="section-title">Our Coffee</h2>
+    <h2 class="section-title">Our Menu</h2>
     <div class="menu">
       <div class="card">
         <h3>Espresso</h3>
         <p>Rich and bold classic shot</p>
+        <strong>0.250 KD</strong>
       </div>
       <div class="card">
         <h3>Latte</h3>
         <p>Smooth espresso with steamed milk</p>
+        <strong>0.250 KD</strong>
       </div>
       <div class="card">
         <h3>Spanish Latte</h3>
         <p>Sweet, creamy and comforting</p>
+        <strong>1.250 KD</strong>
       </div>
       <div class="card">
         <h3>Cold Brew</h3>
         <p>Slow brewed, refreshing and strong</p>
+        <strong>1.250 KD</strong>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="order">
     <h2 class="section-title">Place an Order</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="tel" placeholder="Phone Number" required />
-      <textarea rows="4" placeholder="Your Order"></textarea>
-      <a class="btn" href="https://wa.me/96555432216">Send Order on WhatsApp</a>
+    <form onsubmit="sendToWhatsApp(); return false;">
+      <input id="name" type="text" placeholder="Your Name" required />
+      <textarea id="order" rows="4" placeholder="Your Order"></textarea>
+      <button class="btn" type="submit">Send Order on WhatsApp</button>
     </form>
+
+    <script>
+      function sendToWhatsApp() {
+        const name = document.getElementById('name').value;
+        const order = document.getElementById('order').value;
+
+        const message = `Hi Local Bakala, my name is ${name}. I would like to order: ${order}`;
+        const url = `https://wa.me/96555432216?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      }
+    </script>
   </section>
 
   <section>
-    <h2 class="section-title">About Local Bakala</h2>
-    <p style="text-align:center; max-width:700px; margin:auto; line-height:1.6;">
-      Local Bakala is your neighborhood coffee spot — where simple ingredients,
-      quality beans, and warm local vibes come together. We believe coffee should
-      feel familiar, comforting, and made with care.
-    </p>
+    <h2 class="section-title">Visit Us</h2>
+    <p style="text-align:center;">📍 Applications Department</p>
+    <p style="text-align:center;">🕒 9:00 AM – 6:00 PM</p>
+    <p style="text-align:center;">☕ Dine-in • Takeaway • Local vibes</p>
   </section>
 
   <footer>
@@ -138,3 +178,4 @@
 
 </body>
 </html>
+
